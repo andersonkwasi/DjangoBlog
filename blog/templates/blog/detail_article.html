@@ -10,7 +10,11 @@
 
 <article>
     <h2>{{detailArticle.title}}</h2>
-    <h5>Publié par <i>{{detailArticle.author_or_no}}</i> le {{detailArticle.created_on}}</h5>
+    {% if detailArticle.thumbnail and detailArticle.thumbnail.url %}
+    <img class="article-thumbnail" src="{{ detailArticle.thumbnail.url }}" alt="image article">
+    {%else %}
+    <img src="" alt="image article">
+    {%endif%}
     <p  class="commentaire">{{detailArticle.content|safe}}</p>
 </article>
 {%endblock%}

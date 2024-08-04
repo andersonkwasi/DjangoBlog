@@ -25,7 +25,7 @@ class blogHomeView(ListView):
 class BlogCreateView(LoginRequiredMixin, CreateView):
     model = BlogPost
     template_name = 'blog/add_article.html'
-    fields = ['title','content',"published"]
+    fields = ['title','content','thumbnail','published']
     success_url = reverse_lazy('blog:home')
     
 
@@ -40,7 +40,7 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
 class BlogUpdateView(LoginRequiredMixin, UpdateView):
     model=BlogPost
     template_name = "blog/update_article.html"
-    fields = ['title','content',"published"]
+    fields = ['title','content', 'thumbnail','published']
     success_url = reverse_lazy('blog:home')
 
 
@@ -53,7 +53,7 @@ class BlogDeleteView(DeleteView):
 
 
 # Vue detail des articles 
-class BlogDetailView(LoginRequiredMixin, DetailView):
+class BlogDetailView(DetailView):
     model = BlogPost
     context_object_name = "detailArticle"
     template_name = "blog/detail_article.html"

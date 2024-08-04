@@ -13,7 +13,8 @@ class BlogPost(models.Model):
     created_on = models.DateField(blank=True, null=True, auto_now_add=True)
     published = models.BooleanField(default=False)
     content = models.TextField(blank=True, verbose_name="Commentaire")
-
+    thumbnail = models.ImageField(blank=True, upload_to="blog")
+     
 
     class Meta:
         ordering = ['-created_on']

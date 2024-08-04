@@ -10,20 +10,21 @@
 
 {% for post in posts %}
 
+<div class="content-article">
     <article class="list">
-        <h2>{{post.title}}</h2>
+        <h2>{{post.title}}</h2>       
         <h5>Publié par <i>{{post.author_or_no}}</i> le {{post.created_on}}</h5>
         <a href="{% url 'blog:detail' post.slug%}">
             <p>{{post.content|safe|truncatewords:30}}</p>
         </a>
     </article>
 
-
-
 {% if request.user.is_authenticated %}
 <div class="link">
     <a class="btn-edit" href="{% url 'blog:modifier' post.slug%}">Editer</a>
     <a class="btn-delete" href="{% url 'blog:suppression' post.slug%}">Supprimer</a>
+</div>
+
 </div>
 {%endif%}
 

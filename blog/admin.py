@@ -10,6 +10,7 @@ class BlogPostAdmin(admin.ModelAdmin):
                     "last_updated",
                     "created_on",
                     "content",
+                    "thumbnail",
                     "published",
                     "slug",)
     
