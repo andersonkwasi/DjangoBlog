@@ -5,13 +5,12 @@
 {%endblock%}
 
 
-{%block content %}
+{% block content %}
 <h1>Detail de l'article</h1>
 
 <article>
     <h2>{{detailArticle.title}}</h2>
     <h5>Publié par <i>{{detailArticle.author_or_no}}</i> le {{detailArticle.created_on}}</h5>
-    <p>{{detailArticle.content|safe}}</p>
+    <p  class="commentaire">{{detailArticle.content|safe}}</p>
 </article>
-
 {%endblock%}

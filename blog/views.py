@@ -12,8 +12,6 @@ class blogHomeView(ListView):
     model = BlogPost
     context_object_name = "posts"
 
-
-
     # affiche les donnee en fonction de connecté ou pas
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -29,6 +27,7 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
     template_name = 'blog/add_article.html'
     fields = ['title','content',"published"]
     success_url = reverse_lazy('blog:home')
+    
 
 
 # selectionner automatiquement l'utilisateur connecté
@@ -38,7 +37,7 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
     
 
 #vue de modification d'article
-class BlogUpdateView(UpdateView):
+class BlogUpdateView(LoginRequiredMixin, UpdateView):
     model=BlogPost
     template_name = "blog/update_article.html"
     fields = ['title','content',"published"]
@@ -54,7 +53,7 @@ class BlogDeleteView(DeleteView):
 
 
 # Vue detail des articles 
-class BlogDetailView(DetailView):
+class BlogDetailView(LoginRequiredMixin, DetailView):
     model = BlogPost
     context_object_name = "detailArticle"
     template_name = "blog/detail_article.html"

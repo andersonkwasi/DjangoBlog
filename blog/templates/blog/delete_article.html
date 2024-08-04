@@ -9,8 +9,8 @@
 <h1>Delete {{ articletodelete.title }}?</h1>
     <form method="post">
         {% csrf_token %}
-        <p>Are you sure you want to delete "{{ articletodelete.title }}"?</p>
-        <button type="submit">Yes, delete</button>
+        <p>Souhaitez-vous supprimer "{{ articletodelete.title }}"?</p>
+        <button class="btn-delete confirm" type="submit">Oui, Supprimer</button>
         <a href="{% url 'blog:home' %}">Cancel</a>
     </form>
 {%endblock%}
