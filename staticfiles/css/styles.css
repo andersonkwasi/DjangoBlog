@@ -47,11 +47,39 @@ nav a:hover {
     font-size: large;
 }
 
-.commentaire {
-    line-height: 1.6;
+/*css de detail */
+.Detail h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Ajuster le titre de l'article */
+.Detail h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Ajuster l'image de l'article */
+.Detail .article-thumbnail {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto; /* Centre l'image horizontalement */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ajoute un ombrage à l'image */
+}
+
+/* Ajuster le paragraphe de contenu */
+.Detail .commentaire {
+    line-height: 1.8;
     font-family: 'Lora', serif;
     font-weight: 400;
+    font-size: 1.2rem;
+    margin: 20px auto;
+    padding: 0 15px;
 }
+/* fin */
 
 .list a {
     color: #333;
@@ -166,6 +194,19 @@ footer p {
         padding: 8px 16px;
         font-size: 14px;
     }
+
+    .Detail h1{
+        font-size: 1.8rem;
+    }
+
+    .Detail h2 {
+        font-size: 1.4rem;
+    }
+
+    .Detail .commentaire {
+        font-size: 1.1rem;
+        padding: 0 10px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -189,7 +230,29 @@ footer p {
         font-size: 12px;
     }
 
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .Detail h1 {
+        font-size: 1.6rem;
+    }
+    .Detail h2 {
+        font-size: 1.2rem;
+    }
+
+    .Detail .commentaire {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+    
+    .Detail .article-thumbnail {
+        margin: 15px auto;
+    }
+
     footer {
         font-size: 12px;
     }
+
 }
+

@@ -77,6 +77,7 @@ nav a:hover {
     font-weight: 400;
     font-size: 1.2rem;
     margin: 20px auto;
+    padding: 0 15px;
 }
 /* fin */
 
@@ -193,6 +194,19 @@ footer p {
         padding: 8px 16px;
         font-size: 14px;
     }
+
+    .Detail h1{
+        font-size: 1.8rem;
+    }
+
+    .Detail h2 {
+        font-size: 1.4rem;
+    }
+
+    .Detail .commentaire {
+        font-size: 1.1rem;
+        padding: 0 10px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -220,14 +234,20 @@ footer p {
         font-size: 1.5rem;
     }
 
+    .Detail h1 {
+        font-size: 1.6rem;
+    }
     .Detail h2 {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
     }
 
     .Detail .commentaire {
         font-size: 1rem;
-        max-width: 100%; 
         padding: 0 10px;
+    }
+    
+    .Detail .article-thumbnail {
+        margin: 15px auto;
     }
 
     footer {

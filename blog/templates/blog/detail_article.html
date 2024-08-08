@@ -13,7 +13,7 @@
     {% if detailArticle.thumbnail and detailArticle.thumbnail.url %}
     <img class="article-thumbnail" src="{{ detailArticle.thumbnail.url }}" alt="image article">
     {%else %}
-    <img src="" alt="image article">
+    <img src="" alt="image_article">
     {%endif%}
     <p  class="commentaire">{{detailArticle.content|safe}}</p>
 </article>
