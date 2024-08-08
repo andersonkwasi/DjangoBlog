@@ -18,8 +18,12 @@
         {% if request.user.is_authenticated %}
         <a href="{% url 'blog:home' %}">Accueil</a>
         <a href="{% url 'blog:ajout' %}">Ajouter un Article</a>
+        <a href="{% url 'accounts:logout' %}">Logout</a>
         {% else %}
         <a href="{% url 'blog:home' %}">Articles Postés</a>
+        <a href="{% url 'accounts:login' %}">Se Connecter</a>
+        <a href="{% url 'accounts:signup' %}">S'inscrire</a>  
+
         {% endif %}
 
     </nav>

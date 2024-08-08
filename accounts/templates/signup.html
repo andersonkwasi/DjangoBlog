@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Inscription</title>
+{%endblock%}
+
+{%block content %}
+    <h2>Créez votre Compte</h2>
+<div class="form-container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">S'inscrire</button>
+    </form>
+<div>
+{%endblock%}
