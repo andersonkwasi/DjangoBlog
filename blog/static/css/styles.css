@@ -47,11 +47,38 @@ nav a:hover {
     font-size: large;
 }
 
-.commentaire {
-    line-height: 1.6;
+/*css de detail */
+.Detail h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Ajuster le titre de l'article */
+.Detail h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Ajuster l'image de l'article */
+.Detail .article-thumbnail {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto; /* Centre l'image horizontalement */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ajoute un ombrage à l'image */
+}
+
+/* Ajuster le paragraphe de contenu */
+.Detail .commentaire {
+    line-height: 1.8;
     font-family: 'Lora', serif;
     font-weight: 400;
+    font-size: 1.2rem;
+    margin: 20px auto;
 }
+/* fin */
 
 .list a {
     color: #333;
@@ -189,7 +216,23 @@ footer p {
         font-size: 12px;
     }
 
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .Detail h2 {
+        font-size: 1.25rem;
+    }
+
+    .Detail .commentaire {
+        font-size: 1rem;
+        max-width: 100%; 
+        padding: 0 10px;
+    }
+
     footer {
         font-size: 12px;
     }
+
 }
+

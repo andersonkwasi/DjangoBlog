@@ -4,7 +4,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center; /* Centre horizontalement */
-    height: 100vh; /* Utiliser toute la hauteur de la fenêtre */
+    min-height: 100vh; /* Utiliser toute la hauteur de la fenêtre */
     background-color: #f8f8f8;
 }
 
@@ -12,14 +12,13 @@ a {
     text-decoration: none;
     color: steelblue;
 }
+
 nav {
     display: flex;
     justify-content: center;
     background-color: #333;
     width: 100%; /* Assure que la navbar prend toute la largeur */
-
 }
-
 
 nav a {
     padding: 14px 16px;
@@ -39,7 +38,7 @@ nav a:hover {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 1500px; /* Limite la largeur maximale pour le contenu */
+    max-width: 1200px; /* Réduire la largeur maximale pour plus de responsivité */
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -48,7 +47,7 @@ nav a:hover {
     font-size: large;
 }
 
-.commentaire{
+.commentaire {
     line-height: 1.6;
     font-family: 'Lora', serif;
     font-weight: 400;
@@ -68,7 +67,6 @@ button {
     cursor: pointer; /* Changer le curseur en pointeur */
 }
 
-/* Style pour le bouton de suppression */
 .btn-delete {
     color: #dc3545; /* Couleur du texte */
     padding: 10px 20px; /* Espacement intérieur */
@@ -79,13 +77,12 @@ button {
     margin-left: 20px;
 }
 
-.confirm{
+.confirm {
     color: #ffffff;
     background-color: rgb(252, 84, 84);
     border: 1px rgb(255, 255, 255) solid;
 }
 
-/* Style pour le bouton d'édition */
 .btn-edit {
     color: #17a2b8; /* Couleur du texte */
     padding: 10px 20px; /* Espacement intérieur */
@@ -94,7 +91,6 @@ button {
     cursor: pointer; /* Curseur de pointeur */
     border: 1px black solid;
 }
-
 
 input, textarea {
     background-color: #f8f9fa; /* Couleur de fond légère */
@@ -106,9 +102,32 @@ input, textarea {
     width: 100%; /* Largeur pleine */
     box-sizing: border-box; /* Inclure la bordure et le padding dans la largeur totale */
     resize: none;
-    min-width: 600px;
+    min-width: 100%; /* Enlever la largeur minimale pour la responsivité */
 }
 
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-container input,
+.form-container button {
+    margin-bottom: 15px;
+}
 footer {
     background-color: #000000;
     color: #f2f2f2;
@@ -124,10 +143,53 @@ footer p {
     font-size: 14px;
 }
 
+/* Responsivité */
+@media (max-width: 768px) {
+    body {
+        padding: 0 10px;
+    }
 
-/* Responsibilité */
-@media (max-width: 124px) {
-    #blog article{
-        width: 85%;
+    #blog {
+        padding: 10px;
+    }
+
+    nav a {
+        font-size: 15px;
+        padding: 10px 12px;
+    }
+
+    input, textarea {
+        font-size: 14px;
+    }
+
+    button, .btn-delete, .btn-edit {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    #blog {
+        margin-top: 10px;
+        padding: 10px 5px;
+    }
+
+    button, .btn-delete, .btn-edit {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    footer {
+        font-size: 12px;
     }
 }

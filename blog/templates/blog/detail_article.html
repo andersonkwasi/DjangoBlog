@@ -8,7 +8,7 @@
 {% block content %}
 <h1>Detail de l'article</h1>
 
-<article>
+<article class="Detail">
     <h2>{{detailArticle.title}}</h2>
     {% if detailArticle.thumbnail and detailArticle.thumbnail.url %}
     <img class="article-thumbnail" src="{{ detailArticle.thumbnail.url }}" alt="image article">
