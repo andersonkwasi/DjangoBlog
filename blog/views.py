@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView, DetailView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib import messages
+from django.shortcuts import redirect
 
 
 # Create your views here.
@@ -37,20 +39,40 @@ class BlogCreateView(LoginRequiredMixin, CreateView):
     
 
 #vue de modification d'article
-class BlogUpdateView(LoginRequiredMixin, UpdateView):
+class BlogUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model=BlogPost
     template_name = "blog/update_article.html"
     fields = ['title','content', 'thumbnail','published']
     success_url = reverse_lazy('blog:home')
 
+    def test_func(self):
+        # Vérifie que l'utilisateur connecté est le propriétaire de l'article
+        article = self.get_object()
+        return self.request.user == article.author
+    
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            return super().handle_no_permission()
+        messages.error(self.request, "Vous n'êtes pas le propriétaire de cet article.")
+        return redirect('blog:home')
 
 # Vue de suppression d'article
-class BlogDeleteView(DeleteView):
+class BlogDeleteView(UserPassesTestMixin, DeleteView):
     model = BlogPost
     template_name = "blog/delete_article.html"
     context_object_name = "articletodelete"
     success_url = reverse_lazy('blog:home')
 
+    def test_func(self):
+        # Vérifie que l'utilisateur connecté est le propriétaire de l'article
+        article = self.get_object()
+        return self.request.user == article.author
+    
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            return super().handle_no_permission()
+        messages.error(self.request, "Vous n'êtes pas le propriétaire de cet article.")
+        return redirect('blog:home')
 
 # Vue detail des articles 
 class BlogDetailView(DetailView):
