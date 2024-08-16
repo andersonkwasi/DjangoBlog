@@ -6,11 +6,10 @@
 
 
 {%block content %}
-    <h2>Mettre a jour un Article</h2>
-    <form method="post">
+    <h2>Mettre à jour un Article</h2>
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Modifier</button>
     </form>
 {%endblock%}
-

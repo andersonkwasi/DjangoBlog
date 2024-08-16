@@ -15,7 +15,7 @@ class BlogPostAdmin(admin.ModelAdmin):
                     "slug",)
     
     list_editable = ("published",)
-
+    search_fields = ("title",)
 
 # relier le model d'affichage des champs (BlogPostAdmin) au model des champs (BlogPost)
 admin.site.register(BlogPost, BlogPostAdmin)

@@ -6,6 +6,7 @@
     
     
     {% load static %}
+    <script src="{% static 'js/script.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">    
     {% block title %}
@@ -14,16 +15,15 @@
 </head>
 
 <body>
-    <nav>
+    <nav>                
         {% if request.user.is_authenticated %}
-        <a href="{% url 'blog:home' %}">Accueil</a>
+        <a href="{% url 'blog:home' %}">Articles Postés</a>
         <a href="{% url 'blog:ajout' %}">Ajouter un Article</a>
         <a href="{% url 'accounts:logout' %}">Logout</a>
         {% else %}
         <a href="{% url 'blog:home' %}">Articles Postés</a>
         <a href="{% url 'accounts:login' %}">Se Connecter</a>
-        <a href="{% url 'accounts:signup' %}">S'inscrire</a>  
-
+        <a href="{% url 'accounts:signup' %}">S'inscrire</a>
         {% endif %}
 
     </nav>

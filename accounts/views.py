@@ -1,7 +1,4 @@
 from django.shortcuts import render
-
-# Create your views here.
-# views.py
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from accounts.models import SignUpForm
@@ -22,7 +19,7 @@ def signup_view(request):
             return redirect('blog:home')  # Redirigez vers la page d'accueil ou une autre page
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'accounts/signup.html', {'form': form})
 
 
 
@@ -39,7 +36,7 @@ def login_view(request):
                 return redirect('blog:home')  # Redirigez vers la page d'accueil ou une autre page
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'accounts/login.html', {'form': form})
 
 
 def logout_view(request):

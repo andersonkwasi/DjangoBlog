@@ -4,7 +4,6 @@
 <title>Detail article</title>
 {%endblock%}
 
-
 {% block content %}
 <h1>Detail de l'article</h1>
 
@@ -17,4 +16,35 @@
     {%endif%}
     <p  class="commentaire">{{detailArticle.content|safe}}</p>
 </article>
-{%endblock%}
+
+
+<h2>Commentaires</h2>
+<ul>
+    {% for comment in comments %}
+            <p>Commenté par <strong>{{ comment.author.username }}</strong> le {{ comment.created_at }}</p>
+            {{ comment.text }}
+            {% if user == comment.author %}
+                <a href="{% url 'blog:delete_comment' comment.id %}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">Supprimer</a>
+            {% endif %}
+    {% empty %}
+        <li>Aucun commentaire pour cet article.</li>
+    {% endfor %}
+</ul>
+
+
+<button id="toggle-comment-section" onclick="toggleCommentSection()">Commentez cet article</button>
+
+<div id="comment-section" style="display: none;">
+    {% if user.is_authenticated %}
+        <h2>Ajouter un commentaire</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Envoyer</button>
+        </form>
+    {% else %}
+        <p>Vous devez être connecté pour commenter.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

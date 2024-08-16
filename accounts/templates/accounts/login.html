@@ -12,4 +12,5 @@
     {{ form.as_p }}
     <button type="submit">Se connecter</button>
 </form>
+<a href="{% url 'accounts:password_reset_form' %}">Mot de passe oublié ? </a>
 {%endblock%}

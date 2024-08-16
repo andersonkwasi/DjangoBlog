@@ -7,7 +7,7 @@
 
 {%block content %}
     <h2>Ajouter un nouvel article</h2>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Ajouter</button>

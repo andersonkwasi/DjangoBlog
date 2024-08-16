@@ -91,11 +91,11 @@ MESSAGE_TAGS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db_blog',
-        'USER':'bloguser',
-        'PASSWORD':'adspwd@acces',
-        'HOST':'localhost',
-        'PORT': '5432',
+        'NAME': env("NAME"),
+        'USER': 'bloguser',
+        'PASSWORD': env('PASSWORD'),
+        'HOST': env('ALLOWED_HOSTS'),
+        'PORT': env('PORT'),
     }
 }
 
@@ -118,6 +118,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# mail confirm 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
+
+# end mail confirm
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

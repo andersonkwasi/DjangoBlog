@@ -1,13 +1,14 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView, DetailView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+from django import forms
+from blog.models import BlogPost, BlogComment
+from django.shortcuts import redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 
-
-# Create your views here.
-from blog.models import BlogPost
 
 # methode d'affichage des articles
 class blogHomeView(ListView):
@@ -17,6 +18,7 @@ class blogHomeView(ListView):
     # affiche les donnee en fonction de connecté ou pas
     def get_queryset(self):
         queryset = super().get_queryset()
+        queryset = queryset.annotate(comment_count=Count('comments'))        
         if self.request.user.is_authenticated:
             return queryset
         
@@ -74,8 +76,41 @@ class BlogDeleteView(UserPassesTestMixin, DeleteView):
         messages.error(self.request, "Vous n'êtes pas le propriétaire de cet article.")
         return redirect('blog:home')
 
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = BlogComment
+        fields = ['text']
+
+
 # Vue detail des articles 
 class BlogDetailView(DetailView):
     model = BlogPost
     context_object_name = "detailArticle"
     template_name = "blog/detail_article.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = self.object.comments.all()  # Récupère tous les commentaires associés à l'article
+        context['form'] = CommentForm()  # Ajoute le formulaire de commentaire au contexte
+        return context
+    
+    def post(self, request, *args, **kwargs):
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.blog_post = self.get_object()  # Lien avec l'article actuel
+                comment.author = request.user  # Auteur du commentaire
+                comment.save()
+                return redirect('blog:detail', slug=self.get_object().slug)  # Redirection vers la vue de détail
+            return self.get(request, *args, **kwargs)  # Réaffiche la page avec les erreurs de formulaire
+
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(BlogComment, id=comment_id)
+    blog_post = comment.blog_post  # On récupère l'article associé au commentaire
+
+    if request.user == comment.author:  # Vérifie que l'utilisateur est l'auteur du commentaire
+        comment.delete()    
+    return redirect('blog:detail', slug=blog_post.slug)  
