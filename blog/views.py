@@ -1,14 +1,17 @@
+import json
+from urllib import response
+from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView, DetailView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django import forms
 from blog.models import BlogPost, BlogComment
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
-
+from django.core import serializers
 
 # methode d'affichage des articles
 class blogHomeView(ListView):
@@ -114,3 +117,8 @@ def delete_comment(request, comment_id):
     if request.user == comment.author:  # Vérifie que l'utilisateur est l'auteur du commentaire
         comment.delete()    
     return redirect('blog:detail', slug=blog_post.slug)  
+
+def ArticleApi(request):
+    articles = BlogPost.objects.all()
+    json = serializers.serialize("json",articles)
+    return HttpResponse(json)
