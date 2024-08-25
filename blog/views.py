@@ -1,5 +1,7 @@
 import json
+from typing import OrderedDict
 from urllib import response
+from warnings import filters
 from django.http import HttpRequest, HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DeleteView, DetailView, UpdateView
@@ -118,6 +120,7 @@ def delete_comment(request, comment_id):
         comment.delete()    
     return redirect('blog:detail', slug=blog_post.slug)  
 
+# API des articles
 def ArticleApi(request):
     articles = BlogPost.objects.all()
     json = serializers.serialize("json",articles)
