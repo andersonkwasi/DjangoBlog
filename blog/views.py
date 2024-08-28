@@ -19,6 +19,7 @@ from django.core import serializers
 class blogHomeView(ListView):
     model = BlogPost
     context_object_name = "posts"
+    ordering = ['-created_on']
 
     # affiche les donnee en fonction de connecté ou pas
     def get_queryset(self):
